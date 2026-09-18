@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
+import { createPortal } from 'react-dom';
 import { birthdayData } from '../data/birthdayData';
-import { X, Sparkles, CheckCircle } from 'lucide-react';
+import { X, Sparkles } from 'lucide-react';
 import confetti from 'canvas-confetti';
 
 export default function Scene4Balloons({ onNext }) {
@@ -172,71 +173,106 @@ export default function Scene4Balloons({ onNext }) {
         </button>
       </div>
 
-      {/* Active Modal Popup (Centered) */}
-      {activeReason && (
-        <div
-          style={{
-            position: 'fixed',
-            top: 0,
-            left: 0,
-            width: '100vw',
-            height: '100vh',
-            background: 'rgba(11, 7, 20, 0.88)',
-            backdropFilter: 'blur(12px)',
-            zIndex: 1000,
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            padding: '20px'
-          }}
-          onClick={() => setActiveReason(null)}
-        >
+      {/* Active Modal Popup Rendered at Root Body with Portal for Absolute Centering */}
+      {activeReason &&
+        typeof document !== 'undefined' &&
+        createPortal(
           <div
-            className="glass-card"
             style={{
-              maxWidth: '440px',
-              width: '100%',
-              textAlign: 'center',
-              position: 'relative',
-              padding: '32px 24px',
-              margin: '0 auto',
-              border: `1px solid ${activeReason.color}`
+              position: 'fixed',
+              top: 0,
+              left: 0,
+              right: 0,
+              bottom: 0,
+              width: '100vw',
+              height: '100vh',
+              background: 'rgba(11, 7, 20, 0.88)',
+              backdropFilter: 'blur(12px)',
+              zIndex: 999999,
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              padding: '20px',
+              boxSizing: 'border-box'
             }}
-            onClick={(e) => e.stopPropagation()}
+            onClick={() => setActiveReason(null)}
           >
-            <button
+            <div
+              className="glass-card"
               style={{
-                position: 'absolute',
-                top: '16px',
-                right: '16px',
-                background: 'none',
-                border: 'none',
-                color: 'var(--text-muted)',
-                cursor: 'pointer'
+                maxWidth: '440px',
+                width: '100%',
+                textAlign: 'center',
+                position: 'relative',
+                padding: '36px 24px',
+                margin: 'auto',
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center',
+                justifyContent: 'center',
+                border: `1px solid ${activeReason.color}`,
+                boxShadow: `0 0 35px ${activeReason.color}40, 0 20px 50px rgba(0,0,0,0.8)`
               }}
-              onClick={() => setActiveReason(null)}
+              onClick={(e) => e.stopPropagation()}
             >
-              <X size={20} />
-            </button>
+              <button
+                style={{
+                  position: 'absolute',
+                  top: '16px',
+                  right: '16px',
+                  background: 'none',
+                  border: 'none',
+                  color: 'var(--text-muted)',
+                  cursor: 'pointer'
+                }}
+                onClick={() => setActiveReason(null)}
+                aria-label="Close"
+              >
+                <X size={22} />
+              </button>
 
-            <div style={{ fontSize: '3.2rem', marginBottom: '12px' }}>{activeReason.icon}</div>
-            <h3 style={{ fontFamily: 'var(--font-serif)', color: 'var(--text-gold)', fontSize: '1.4rem', marginBottom: '12px' }}>
-              {activeReason.title}
-            </h3>
-            <p style={{ color: 'var(--text-cream)', lineHeight: '1.7', fontSize: '1.05rem', margin: '0 0 20px 0' }}>
-              {activeReason.text}
-            </p>
+              <div style={{ fontSize: '3.5rem', marginBottom: '14px' }}>{activeReason.icon}</div>
+              <h3
+                style={{
+                  fontFamily: 'var(--font-serif)',
+                  color: 'var(--text-gold)',
+                  fontSize: '1.45rem',
+                  marginBottom: '12px',
+                  textAlign: 'center'
+                }}
+              >
+                {activeReason.title}
+              </h3>
+              <p
+                style={{
+                  color: 'var(--text-cream)',
+                  lineHeight: '1.7',
+                  fontSize: '1.05rem',
+                  margin: '0 0 24px 0',
+                  textAlign: 'center'
+                }}
+              >
+                {activeReason.text}
+              </p>
 
-            <button
-              className="btn-primary"
-              style={{ padding: '10px 28px', fontSize: '0.9rem', margin: '0 auto' }}
-              onClick={() => setActiveReason(null)}
-            >
-              {allPopped ? 'Awesome! ✨' : 'Pop More Balloons 🎈'}
-            </button>
-          </div>
-        </div>
-      )}
+              <button
+                className="btn-primary"
+                style={{
+                  padding: '12px 32px',
+                  fontSize: '0.95rem',
+                  margin: '0 auto',
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  justifyContent: 'center'
+                }}
+                onClick={() => setActiveReason(null)}
+              >
+                {allPopped ? 'Awesome! ✨' : 'Pop More Balloons 🎈'}
+              </button>
+            </div>
+          </div>,
+          document.body
+        )}
     </div>
   );
 }
