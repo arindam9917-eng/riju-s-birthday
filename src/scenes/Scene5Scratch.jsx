@@ -1,13 +1,12 @@
 import React, { useState } from 'react';
 import ScratchCanvas from '../components/ScratchCanvas';
 import { birthdayData } from '../data/birthdayData';
-import { CheckCircle2, Lock, RotateCcw, Sparkles } from 'lucide-react';
+import { CheckCircle2, Lock, Sparkles } from 'lucide-react';
 import confetti from 'canvas-confetti';
 
 export default function Scene5Scratch({ onNext }) {
   const [selectedCardId, setSelectedCardId] = useState(null);
   const [isRevealed, setIsRevealed] = useState(false);
-  const [resetKey, setResetKey] = useState(0);
 
   const handleScratchStart = (id) => {
     if (selectedCardId === null) {
@@ -71,7 +70,6 @@ export default function Scene5Scratch({ onNext }) {
       )}
 
       <div
-        key={resetKey}
         style={{
           display: 'grid',
           gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))',
@@ -182,23 +180,7 @@ export default function Scene5Scratch({ onNext }) {
         })}
       </div>
 
-      <div style={{ display: 'flex', gap: '14px', justifyContent: 'center', flexWrap: 'wrap' }}>
-        {selectedCardId !== null && (
-          <button
-            className="btn-primary"
-            style={{
-              background: 'rgba(255, 255, 255, 0.1)',
-              border: '1px solid var(--border-glass)',
-              color: '#fff',
-              boxShadow: 'none'
-            }}
-            onClick={handleReset}
-          >
-            <RotateCcw size={16} />
-            <span>Try Again 🔄</span>
-          </button>
-        )}
-
+      <div style={{ display: 'flex', justifyContent: 'center', width: '100%' }}>
         <button className="btn-primary btn-gold" onClick={onNext}>
           <span>Open Sealed Letter 💌</span>
         </button>

@@ -102,31 +102,21 @@ export const birthdayData = {
     }
   ],
 
-  // Long Personalized Letter (Scene 6) - Supports 500 to 1500+ words
+  // Short & Sweet Friendly Birthday Letter (Scene 6)
   letter: {
-    salutation: "Dearest Lisa,",
-    heading: "Happy Birthday! 🎉✨",
+    salutation: "Hey Lisa! 🎉",
+    heading: "Happy Birthday Bestie! ✨",
     paragraphs: [
-      "Today is a truly special day because it marks the birth of someone who brings immense light, joy, and warmth into the world. Birthdays come once a year, but the positive impact you have on those around you is felt every single day.",
-      
-      "Looking back at all the moments we've shared, I am filled with endless gratitude. From our most random conversations to the deepest late-night talks, every memory with you holds a special place in my heart. You possess a rare kind of warmth — the kind that makes people feel instantly understood, appreciated, and at ease.",
-
-      "I hope you take a quiet moment today to reflect on how far you've come, all the obstacles you've gracefully overcome, and how many lives you've brightened just by being yourself. You are resilient, creative, hilariously funny, and undeniably one of a kind.",
-
-      "As you step into this new chapter of your life, my biggest wish for you is boundless happiness. May this year bring you closer to all your wildest dreams and grandest goals. May you find success in everything you set your mind to, encounter incredible opportunities, and build beautiful new memories that bring a smile to your face whenever you look back.",
-
-      "Whenever life gets overwhelming or challenging, always remember how strong and capable you are. You have a heart of gold, a mind full of brilliant ideas, and a spirit that cannot be dimmed. Never shrink yourself for anyone, and never lose the spark that makes you so uniquely wonderful.",
-
-      "Thank you for being such an extraordinary friend, companion, and confidant. Thank you for the laughs, the support, the craziness, and all the quiet moments of understanding. The world is undeniably brighter, kinder, and much more fun with you in it.",
-
-      "So here's to another incredible orbit around the sun! May your day be filled with delicious cake, laughter, warm hugs, wonderful surprises, and all the love you so richly deserve."
+      "Wishing you the happiest birthday ever! Today is all about celebrating you, your amazing smile, your craziness, and all the fun memories we share.",
+      "Thank you for being such an awesome friend, for all the laughs, random chats, and all the great moments together. Hanging out with you is always a blast!",
+      "I hope this year brings you tons of joy, success, loads of delicious treats, and everything you've been wishing for. Stay the wonderful, cheerful person you are always!"
     ],
     wishes: [
-      "✨ Stay blessed.",
-      "💖 Stay happiest always.",
-      "😊 Keep shining & smiling!"
+      "✨ Stay blessed & happy always!",
+      "🍰 Eat lots of cake & party hard!",
+      "😊 Keep shining and smiling!"
     ],
-    signature: "Made with infinite love & care for Lisa ❤️"
+    signature: "From your good friend ❤️"
   },
 
   // Final Celebration (Scene 7)
