@@ -1,12 +1,12 @@
 /**
  * CENTRAL PERSONALIZATION CONFIGURATION
- * Reusable birthday data for Riju (or any recipient).
+ * Reusable birthday data for Lisa.
  */
 
 export const birthdayData = {
-  recipientName: "Riju",
+  recipientName: "Lisa",
   senderName: "With All My Love ❤️",
-  birthdayDate: "August 23",
+  birthdayDate: "19th September",
   introTitle: "A Special Surprise Awaits...",
   introSubtitle: "Created specially for an extraordinary person on their birthday.",
   
@@ -60,51 +60,51 @@ export const birthdayData = {
   scratchVouchers: [
     {
       id: 1,
-      title: "Unlimited Fuchka",
-      icon: "🌮",
-      desc: "Unlimited spicy, tangy & crispy fuchka treat anytime you want, on demand!",
+      title: "1 Rupee",
+      icon: "🪙",
+      desc: "A shiny lucky 1 Rupee coin reward for you!",
       badge: "VOUCHER UNLOCKED 🌟"
     },
     {
       id: 2,
-      title: "Premium Ice Cream",
-      icon: "🍨",
-      desc: "Your favorite flavor, double scoop with extra toppings & hot fudge!",
+      title: "10 Rupees",
+      icon: "💵",
+      desc: "A crispy 10 Rupees treat cash reward!",
       badge: "VOUCHER UNLOCKED 🌟"
     },
     {
       id: 3,
-      title: "Blockbuster Movie Night",
-      icon: "🎬",
-      desc: "Movie ticket of your choice with a giant tub of popcorn & chilled drink!",
+      title: "Chocolate",
+      icon: "🍫",
+      desc: "Your favorite sweet, delicious & silky chocolate bar!",
       badge: "VOUCHER UNLOCKED 🌟"
     },
     {
       id: 4,
-      title: "Anything Wish Pass",
-      icon: "💛",
-      desc: "Wish for anything budget-friendly and consider your wish officially granted!",
+      title: "Ice Cream",
+      icon: "🍨",
+      desc: "A tasty, creamy double scoop ice cream on the house!",
       badge: "VOUCHER UNLOCKED 🌟"
     },
     {
       id: 5,
-      title: "Epic Night Out / Chill",
-      icon: "🌙",
-      desc: "An epic overnight chill session, gaming, late-night snacks & non-stop gossip!",
+      title: "You Send Me 100 Rupees",
+      icon: "🤑",
+      desc: "Time to pay up! You have to send me 100 rupees right now! 💸",
       badge: "VOUCHER UNLOCKED 🌟"
     },
     {
       id: 6,
-      title: "Funny Campus Dare",
-      icon: "💋",
-      desc: "Ultimate hilarious dare voucher! Good luck trying your charm on campus! 😉",
+      title: "Kuch Nahi 😂",
+      icon: "🤷‍♂️",
+      desc: "Better luck next time! Kuch bhi nahi mila! 😂",
       badge: "VOUCHER UNLOCKED 🌟"
     }
   ],
 
   // Long Personalized Letter (Scene 6) - Supports 500 to 1500+ words
   letter: {
-    salutation: "Dearest Riju,",
+    salutation: "Dearest Lisa,",
     heading: "Happy Birthday! 🎉✨",
     paragraphs: [
       "Today is a truly special day because it marks the birth of someone who brings immense light, joy, and warmth into the world. Birthdays come once a year, but the positive impact you have on those around you is felt every single day.",
@@ -126,7 +126,7 @@ export const birthdayData = {
       "💖 Stay happiest always.",
       "😊 Keep shining & smiling!"
     ],
-    signature: "Made with infinite love & care for Riju ❤️"
+    signature: "Made with infinite love & care for Lisa ❤️"
   },
 
   // Final Celebration (Scene 7)
