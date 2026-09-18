@@ -1,9 +1,10 @@
 import React, { useEffect, useRef, useState } from 'react';
 
-export default function ScratchCanvas({ onScratchComplete }) {
+export default function ScratchCanvas({ onScratchComplete, onScratchStart, disabled }) {
   const canvasRef = useRef(null);
   const [isCleared, setIsCleared] = useState(false);
   const isDrawing = useRef(false);
+  const hasStartedRef = useRef(false);
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -30,6 +31,8 @@ export default function ScratchCanvas({ onScratchComplete }) {
     ctx.textAlign = 'center';
     ctx.fillText('✨ Scratch Here! ✨', width / 2, height / 2);
 
+    if (disabled) return;
+
     const getPos = (e) => {
       const rect = canvas.getBoundingClientRect();
       const clientX = e.touches ? e.touches[0].clientX : e.clientX;
@@ -41,9 +44,14 @@ export default function ScratchCanvas({ onScratchComplete }) {
     };
 
     const scratch = (pos) => {
+      if (!hasStartedRef.current) {
+        hasStartedRef.current = true;
+        if (onScratchStart) onScratchStart();
+      }
+
       ctx.globalCompositeOperation = 'destination-out';
       ctx.beginPath();
-      ctx.arc(pos.x, pos.y, 25, 0, Math.PI * 2);
+      ctx.arc(pos.x, pos.y, 28, 0, Math.PI * 2);
       ctx.fill();
 
       checkProgress();
@@ -60,19 +68,20 @@ export default function ScratchCanvas({ onScratchComplete }) {
       }
 
       const percentage = (clearCount / (pixels.length / 16)) * 100;
-      if (percentage > 40) {
+      if (percentage > 35) {
         setIsCleared(true);
         if (onScratchComplete) onScratchComplete();
       }
     };
 
     const startDrawing = (e) => {
+      if (disabled) return;
       isDrawing.current = true;
       scratch(getPos(e));
     };
 
     const draw = (e) => {
-      if (!isDrawing.current) return;
+      if (!isDrawing.current || disabled) return;
       scratch(getPos(e));
     };
 
@@ -95,7 +104,7 @@ export default function ScratchCanvas({ onScratchComplete }) {
       canvas.removeEventListener('touchmove', draw);
       canvas.removeEventListener('touchend', stopDrawing);
     };
-  }, [isCleared, onScratchComplete]);
+  }, [isCleared, onScratchComplete, onScratchStart, disabled]);
 
   if (isCleared) return null;
 
@@ -110,7 +119,9 @@ export default function ScratchCanvas({ onScratchComplete }) {
         height: '100%',
         borderRadius: '16px',
         zIndex: 5,
-        cursor: 'pointer'
+        cursor: disabled ? 'not-allowed' : 'pointer',
+        opacity: disabled ? 0.6 : 1,
+        pointerEvents: disabled ? 'none' : 'auto'
       }}
     />
   );
