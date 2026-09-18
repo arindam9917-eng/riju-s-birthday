@@ -1,0 +1,283 @@
+/* ==========================================================================
+   ULTRA-PREMIUM INTERACTIVE BIRTHDAY SURPRISE - STYLESYSTEM
+   Theme: Deep Purple Night + Romantic Rose/Pink + Shimmering Gold
+   ========================================================================== */
+
+:root {
+  /* Dark Cosmic Romantic Palette */
+  --bg-dark: #0b0714;
+  --bg-cosmic: radial-gradient(circle at 50% 30%, #230d38 0%, #10081d 50%, #06030b 100%);
+  --bg-glass: rgba(255, 255, 255, 0.05);
+  --bg-glass-card: rgba(26, 15, 43, 0.65);
+  --bg-glass-hover: rgba(255, 255, 255, 0.1);
+  --border-glass: rgba(255, 255, 255, 0.12);
+
+  /* Color Highlights */
+  --rose-primary: #ff4d8d;
+  --rose-glow: rgba(255, 77, 141, 0.4);
+  --gold-primary: #f5cb5c;
+  --gold-light: #fff3b0;
+  --gold-shimmer: linear-gradient(135deg, #d4af37 0%, #fff3b0 25%, #aa771c 50%, #fcf6ba 75%, #d4af37 100%);
+  --purple-glow: rgba(156, 137, 255, 0.35);
+
+  /* Text Colors */
+  --text-white: #ffffff;
+  --text-cream: #faf4ed;
+  --text-muted: #b8b2cb;
+  --text-gold: #f7d070;
+
+  /* Typography */
+  --font-serif: 'Cinzel', serif;
+  --font-display: 'Playfair Display', serif;
+  --font-handwriting: 'Dancing Script', 'Caveat', cursive;
+  --font-sans: 'Outfit', -apple-system, BlinkMacSystemFont, sans-serif;
+
+  /* Shadows & Glows */
+  --shadow-rose: 0 0 30px rgba(255, 77, 141, 0.4);
+  --shadow-gold: 0 0 25px rgba(245, 203, 92, 0.35);
+  --shadow-card: 0 20px 50px rgba(0, 0, 0, 0.6), 0 0 20px rgba(156, 137, 255, 0.15);
+
+  /* Transitions */
+  --transition-smooth: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  --transition-bounce: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  overflow-x: hidden;
+  background-color: var(--bg-dark);
+  color: var(--text-white);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  touch-action: manipulation;
+}
+
+body {
+  min-height: 100vh;
+  position: relative;
+  overflow-x: hidden;
+  background: var(--bg-cosmic);
+}
+
+/* Custom Scrollbars */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg-dark);
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 77, 141, 0.4);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--rose-primary);
+}
+
+/* App Container */
+.app-container {
+  min-height: 100vh;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+/* Fixed Background Canvas */
+.particle-canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Floating Audio Controller */
+.audio-controller-btn {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  background: rgba(26, 15, 43, 0.7);
+  border: 1px solid var(--border-glass);
+  backdrop-filter: blur(16px);
+  border-radius: 30px;
+  color: var(--text-cream);
+  font-family: var(--font-sans);
+  font-size: 0.85rem;
+  font-weight: 500;
+  cursor: pointer;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+  transition: var(--transition-smooth);
+}
+
+.audio-controller-btn:hover {
+  background: rgba(255, 77, 141, 0.25);
+  border-color: var(--rose-primary);
+  transform: translateY(-2px);
+}
+
+/* Equalizer animation */
+.equalizer {
+  display: flex;
+  align-items: flex-end;
+  gap: 3px;
+  height: 14px;
+}
+.equalizer .bar {
+  width: 3px;
+  background: var(--rose-primary);
+  border-radius: 2px;
+  height: 4px;
+  transition: height 0.2s ease;
+}
+.equalizer.playing .bar:nth-child(1) { animation: eqBar 0.8s infinite ease-in-out alternate; }
+.equalizer.playing .bar:nth-child(2) { animation: eqBar 0.6s infinite ease-in-out alternate 0.2s; }
+.equalizer.playing .bar:nth-child(3) { animation: eqBar 1.0s infinite ease-in-out alternate 0.4s; }
+
+@keyframes eqBar {
+  0% { height: 3px; }
+  100% { height: 14px; }
+}
+
+/* Scene Wrapper */
+.scene-wrapper {
+  position: relative;
+  z-index: 10;
+  width: 100%;
+  max-width: 800px;
+  min-height: 100vh;
+  padding: 80px 20px 40px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  opacity: 0;
+  transform: scale(0.96);
+  animation: sceneFadeIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes sceneFadeIn {
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Common Buttons */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 14px 32px;
+  background: linear-gradient(135deg, #ff4d8d 0%, #e6005c 100%);
+  color: #ffffff;
+  font-family: var(--font-sans);
+  font-weight: 600;
+  font-size: 1rem;
+  letter-spacing: 0.5px;
+  border: none;
+  border-radius: 40px;
+  cursor: pointer;
+  box-shadow: 0 10px 25px rgba(255, 77, 141, 0.4);
+  transition: var(--transition-bounce);
+  margin-top: 24px;
+}
+
+.btn-primary:hover {
+  transform: translateY(-3px) scale(1.03);
+  box-shadow: 0 15px 35px rgba(255, 77, 141, 0.6);
+}
+
+.btn-primary:active {
+  transform: translateY(1px) scale(0.98);
+}
+
+.btn-gold {
+  background: var(--gold-shimmer);
+  color: #1a0f2b;
+  font-weight: 700;
+  box-shadow: 0 10px 25px rgba(245, 203, 92, 0.4);
+}
+
+.btn-gold:hover {
+  box-shadow: 0 15px 35px rgba(245, 203, 92, 0.6);
+}
+
+/* Navigation Indicator / Scene Progress Dots */
+.scene-progress {
+  position: fixed;
+  bottom: 16px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 100;
+  display: flex;
+  gap: 8px;
+  padding: 6px 14px;
+  background: rgba(16, 8, 29, 0.7);
+  border: 1px solid var(--border-glass);
+  backdrop-filter: blur(12px);
+  border-radius: 20px;
+}
+
+.dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.2);
+  transition: var(--transition-smooth);
+}
+
+.dot.active {
+  background: var(--rose-primary);
+  width: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px var(--rose-primary);
+}
+
+/* Titles and Typography */
+.scene-title {
+  font-family: var(--font-serif);
+  font-size: clamp(2rem, 6vw, 3.2rem);
+  font-weight: 700;
+  line-height: 1.2;
+  margin-bottom: 12px;
+  background: linear-gradient(135deg, #ffffff 0%, #f7d070 50%, #ff4d8d 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.scene-subtitle {
+  font-family: var(--font-sans);
+  font-size: clamp(0.95rem, 3vw, 1.15rem);
+  color: var(--text-muted);
+  max-width: 540px;
+  margin-bottom: 28px;
+  line-height: 1.6;
+}
+
+/* Glass Card */
+.glass-card {
+  background: var(--bg-glass-card);
+  border: 1px solid var(--border-glass);
+  backdrop-filter: blur(20px);
+  border-radius: 24px;
+  padding: 28px;
+  box-shadow: var(--shadow-card);
+}
